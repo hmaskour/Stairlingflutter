@@ -1,0 +1,94 @@
+import 'package:flutter/material.dart';
+
+class AddChauffeurAndVehicleScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Add Chauffeur and Vehicle'),
+        centerTitle: true,
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.asset('assets/logo.png'), // Replace with your logo asset
+        ),
+      ),
+      body: Row(
+        children: [
+          Sidebar(),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Add Chauffeur', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                    TextField(decoration: InputDecoration(labelText: 'First Name')),
+                    TextField(decoration: InputDecoration(labelText: 'Last Name')),
+                    TextField(decoration: InputDecoration(labelText: 'License Number')),
+                    TextField(decoration: InputDecoration(labelText: 'Email')),
+                    TextField(decoration: InputDecoration(labelText: 'Phone Number')),
+                    SizedBox(height: 16),
+                    ElevatedButton(onPressed: () {}, child: Text('Submit Chauffeur Info')),
+                    SizedBox(height: 32),
+                    Text('Assign Vehicle', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                    DropdownButtonFormField<String>(
+                      decoration: InputDecoration(labelText: 'Select Vehicle'),
+                      items: ['Toyota Camry - ABC123', 'Honda Accord - XYZ456']
+                          .map((vehicle) => DropdownMenuItem(value: vehicle, child: Text(vehicle)))
+                          .toList(),
+                      onChanged: (value) {},
+                    ),
+                    SizedBox(height: 16),
+                    ElevatedButton(onPressed: () {}, child: Text('Assign Vehicle')),
+                    SizedBox(height: 32),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ElevatedButton(onPressed: () {}, child: Text('Bulk Import via CSV')),
+                        ElevatedButton(onPressed: () {}, child: Text('Submit')),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class Sidebar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 200,
+      color: Colors.grey[200],
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          DrawerButton(label: 'Dashboard', onTap: () {}),
+          DrawerButton(label: 'Chauffeurs', onTap: () {}),
+          DrawerButton(label: 'Vehicles', onTap: () {}),
+        ],
+      ),
+    );
+  }
+}
+
+class DrawerButton extends StatelessWidget {
+  final String label;
+  final VoidCallback onTap;
+
+  DrawerButton({required this.label, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(label),
+      onTap: onTap,
+    );
+  }
+}
