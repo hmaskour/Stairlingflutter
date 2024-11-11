@@ -29,23 +29,50 @@ class AddChauffeurAndVehicleScreen extends StatelessWidget {
                     TextField(decoration: InputDecoration(labelText: 'Email')),
                     TextField(decoration: InputDecoration(labelText: 'Phone Number')),
                     SizedBox(height: 16),
-                    ElevatedButton(onPressed: () {}, child: Text('Submit Chauffeur Info')),
+                    ElevatedButton(
+                      onPressed: () {
+                        // Implement chauffeur info submission logic
+                        // For example, validate fields and submit data
+                        print('Chauffeur info submitted');
+                      },
+                      child: Text('Submit Chauffeur Info'),
+                    ),
                     SizedBox(height: 32),
                     Text('Assign Vehicle', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                    String? selectedVehicle;
                     DropdownButtonFormField<String>(
                       decoration: InputDecoration(labelText: 'Select Vehicle'),
                       items: ['Toyota Camry - ABC123', 'Honda Accord - XYZ456']
                           .map((vehicle) => DropdownMenuItem(value: vehicle, child: Text(vehicle)))
                           .toList(),
-                      onChanged: (value) {},
+                      onChanged: (value) {
+                        selectedVehicle = value;
+                      },
+                      validator: (value) => value == null ? 'Please select a vehicle' : null,
                     ),
                     SizedBox(height: 16),
-                    ElevatedButton(onPressed: () {}, child: Text('Assign Vehicle')),
+                    ElevatedButton(
+                      onPressed: () {
+                        if (selectedVehicle != null) {
+                          // Implement vehicle assignment logic
+                          print('Vehicle assigned: $selectedVehicle');
+                        } else {
+                          print('Please select a vehicle');
+                        }
+                      },
+                      child: Text('Assign Vehicle'),
+                    ),
                     SizedBox(height: 32),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        ElevatedButton(onPressed: () {}, child: Text('Bulk Import via CSV')),
+                        ElevatedButton(
+                          onPressed: () {
+                            // Implement bulk import logic
+                            print('Bulk import via CSV initiated');
+                          },
+                          child: Text('Bulk Import via CSV'),
+                        ),
                         ElevatedButton(onPressed: () {}, child: Text('Submit')),
                       ],
                     ),
@@ -69,9 +96,18 @@ class Sidebar extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          DrawerButton(label: 'Dashboard', onTap: () {}),
-          DrawerButton(label: 'Chauffeurs', onTap: () {}),
-          DrawerButton(label: 'Vehicles', onTap: () {}),
+          DrawerButton(label: 'Dashboard', onTap: () {
+            // Navigate to Dashboard
+            print('Navigating to Dashboard');
+          }),
+          DrawerButton(label: 'Chauffeurs', onTap: () {
+            // Navigate to Chauffeurs
+            print('Navigating to Chauffeurs');
+          }),
+          DrawerButton(label: 'Vehicles', onTap: () {
+            // Navigate to Vehicles
+            print('Navigating to Vehicles');
+          }),
         ],
       ),
     );
@@ -92,3 +128,4 @@ class DrawerButton extends StatelessWidget {
     );
   }
 }
+
